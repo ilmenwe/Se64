@@ -1,0 +1,16 @@
+Läs in data till ADL direkt efter läsandet av OpCode;
+Läs in data till ADH om minnes adressen behöver det. 
+Stega tillbaka ett steg i PC++ om ADL inte används.
+
+
+Fixa debug output efter varje steg.
+
+Skriv om CPU kör en kö med commandon och procssera ett per tick.
+
+Ändra bit läs/skriv till en | (1<<5) för skriv och if(data & (1<<5)) för läs
+
+FIX IZX IZY!!!!!!!!
+
+http://archive.6502.org/datasheets/mos_6500_mpu_preliminary_may_1976.pdf
+http://www.zimmers.net/anonftp/pub/cbm/schematics/computers/c64/prg-vic-left.gif
+http://www.zimmers.net/anonftp/pub/cbm/schematics/computers/c64/prg-vic-right.gif
