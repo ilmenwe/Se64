@@ -120,13 +120,13 @@ unsigned char Platform::Read(unsigned short address)
 	else if (address >= 0xDC00 && address <= 0xDC0F)
 	{
 		//Log("NON IMPLEMTEND CIA 1 STUFF!!!!");
-		data = 0;
+		data = 0xff;
 
 	}
 	else if (address >= 0xDD00 && address <= 0xDD0F)
 	{
 		//Log("NON IMPLEMTEND CIA 2 STUFF!!!!");
-		data = 0;
+		data = 0xff;
 	}
 	else
 	{

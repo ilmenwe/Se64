@@ -69,17 +69,25 @@ void CPU::mergeAddress()
 		}
 		break;
 	case am_izy:
-		address_ = (ADL_)+(ADH_ << 8);
+	{
+		address_ = ADL_;// (ADL_)+(ADH_ << 8);
+		unsigned char lo = Read(ADL_,LOW);
+		unsigned char hi = Read(ADL_+1,HIGH);
+
+		address_ = (lo) + (hi << 8);
 		if ((address_ >> 8) != ((address_ + Y_.byte) >> 8))
 		{
 			taskQueue_.push(CPU_TASKS::WASTE);
 		}
+		if(Y_.byte != 0)
+		{ 
+			bool breakhere = true;
+		}
 		address_ += Y_.byte;
-
-		taskQueue_.push(CPU_TASKS::READ_D);
+		LDAT_ = Read(address_ + Y_.byte,DATA);
 		taskQueue_.push(CPU_TASKS::EXECUTE_OP);
 
-
+	}
 		break;
 	case am_abs:
 		address_ = ADL_ + (ADH_ << 8);
@@ -614,9 +622,6 @@ void CPU::EvaluateOpAddressMode()
 	case am_izy:
 		LogStrings::log_address_style = "izy";
 		//Log("Addressing Mode: IZY");
-		taskQueue_.push(READ_D);
-		taskQueue_.push(READ_LD);
-		taskQueue_.push(READ_HD);
 		taskQueue_.push(MERGE_ADDRESS);
 		break;
 	case am_abs:
@@ -783,7 +788,7 @@ void CPU::Tick()
 		
 	case READ_HD:
 		address_ = HDAT_;
-		ADH_ = Read(address_, HIGH);
+		ADH_ = Read(address_+1, HIGH);
 		break;
 
 	case READ_A:
@@ -1001,7 +1006,8 @@ void CPU::ASL()
 
 	LDAT_ = v;
 
-	taskQueue_.push(WRITE_LD);
+	Write(address_, LDAT_);
+	//taskQueue_.push(WRITE_LD);
 
 	//Write((addr+ X_.byte) & 0xff, ov);
 	//Write((addr + X_.byte) & 0xff, v);
@@ -1079,8 +1085,7 @@ void CPU::LDY()
 void CPU::STY()
 {
 	LDAT_ = Y_.byte;
-	taskQueue_.push(WRITE_LD);
-	//Write(address_, Y_.byte);
+	Write(address_, Y_.byte);
 }
 
 void CPU::TAX()

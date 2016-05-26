@@ -390,7 +390,6 @@ private:
 	void mergeAddress();
 	AddressingMode currentAddressingMode_;
 	int opCodeAddressingMode_[256];
-	//std::map<unsigned char, AddressingMode> opCodeAddressingMode_;
 	unsigned short address_;
 
 	std::queue<CPU_TASKS> taskQueue_;

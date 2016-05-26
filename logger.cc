@@ -2,6 +2,7 @@
 #include <fstream>
 #include <sstream>
 #include <time.h>
+#include <iostream>
 
 std::string LogStrings::log_address = "";
 std::string LogStrings::log_op = "";
@@ -90,7 +91,8 @@ void log()
 		
 		logstr[i] = toupper(logstr[i]);
 	}
-	LogStrings::logStream << logstr;
+	std::cout << logstr << std::endl;
+	//LogStrings::logStream << logstr;
 	
 }
 
