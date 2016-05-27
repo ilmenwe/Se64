@@ -36,7 +36,14 @@ struct screenData
 
 };
 
+struct Glyph
+{
+	char row[8];
+};
+
 void Init(Platform* platform);
+
+void readGlyph(Glyph & glyphOut, const std::string & characterRom, int id);
 
 void Tick()
 {
@@ -77,6 +84,8 @@ void putpixel(SDL_Surface *surface, int x, int y, Uint32 pixel)
 	}
 }
 
+
+void renderGlyph(SDL_Surface * screen, Glyph & g, int x, int y);
 
 void render(SDL_Surface* screen, const std::string& characterRom);
 private:
