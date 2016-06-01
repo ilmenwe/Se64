@@ -17,6 +17,7 @@ public:
 	bool is_writing() { return writing_; }
 	bool set_writing(bool writing) { writing_ = writing; }
 	void dumpRam();
+	void dumpVicRam();
 	std::string AVJack();
 
 	VicII* getVicII() { return vic_II_; }
@@ -33,7 +34,7 @@ public:
 			this->kernelRom[i] = kernelRom[i];
 		}
 	}
-	unsigned char* getRam() { return ram; };
+	unsigned char* getRam() { return &ram[0]; };
 
 
 	void putIntoRam(unsigned short lo, unsigned short hi, std::string data)

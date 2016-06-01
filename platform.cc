@@ -120,28 +120,39 @@ unsigned char Platform::Read(unsigned short address)
 	else if (address >= 0xDC00 && address <= 0xDC0F)
 	{
 		//Log("NON IMPLEMTEND CIA 1 STUFF!!!!");
-		data = 0xff;
+		data = 0x00;
 
 	}
 	else if (address >= 0xDD00 && address <= 0xDD0F)
 	{
 		//Log("NON IMPLEMTEND CIA 2 STUFF!!!!");
-		data = 0xff;
+		data = 0x00;
 	}
 	else
 	{
 		data = ram[address];
 	}
-	//Log("Read from address " + intToStr(address) + " got data: " + intToStr(data));
+	if (address == 0xd012)
+	{
+		data = 0;
+	}
+
+
+	LogIO("Read from address " + intToStr(address) + " got data: " + intToStr(data));
+	if (address == 0x0400)
+	{
+		bool breakhere = true;
+	}
+
 	return data;
 }
 
 
 void Platform::Write(unsigned short address, unsigned char data)
 {
-	if (address >= 0x0400 && address <= 0x07ff)
+	LogIO("Write to address " + intToStr(address) + " with data: " + intToStr(data));
+	if (address == 0x0400)
 	{
-
 		bool breakhere = true;
 	}
 	/*
@@ -210,7 +221,6 @@ void Platform::Write(unsigned short address, unsigned char data)
 	Log("Write to address " + intToStr(address) + " with data: " + intToStr(data));
 	*/
 	ram[address] = data;
-
 }
 
 
@@ -227,6 +237,14 @@ void Platform::dumpRam()
 {
 	std::ofstream ramDump("ram.bin");
 	ramDump.write((char*)ram, 65536);
+
+}
+void Platform::dumpVicRam()
+{
+	std::ofstream ramDump("vicram.bin");
+	char vicRam[0x07FF - 0x0400];
+	memcpy(vicRam, &ram[0x0400], 0x07FF - 0x0400);
+	ramDump.write((char*)vicRam, 0x07FF - 0x0400);
 
 }
 

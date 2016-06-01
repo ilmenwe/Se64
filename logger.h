@@ -33,3 +33,4 @@ void persist_log();
 void close_log();
 void LogRam(unsigned char* ram);
 void Log(std::string data);
+void LogIO(std::string data);

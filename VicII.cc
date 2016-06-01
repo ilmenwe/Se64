@@ -8,9 +8,12 @@ void VicII::Init(Platform* platform)
 
 void VicII::readGlyph(Glyph& glyphOut, const std::string &characterRom, int id )
 {
-	for (int r = id; r < id+8; r++)
+	unsigned char* startIndex = platform_->getRam(); 
+	for (int r = 0; r < 8; r++)
 	{
-		memcpy(glyphOut.row, (void*)characterRom[r], 8);
+		unsigned short characterIndex = 0x0400 + id;
+		char row = characterRom[startIndex[characterIndex]];
+		glyphOut.row[r] = row;
 	}
 
 }
@@ -48,7 +51,7 @@ void VicII::render(SDL_Surface * screen, const std::string & characterRom)
 	{
 		for(int x = 0; x < 40; x++)
 		{
-			readGlyph(g, characterRom, x + y * 40);
+			readGlyph(g, characterRom, x + (y * 40));
 			renderGlyph(screen, g, x, y);
 		}
 	}

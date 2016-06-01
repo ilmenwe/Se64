@@ -106,6 +106,85 @@ public:
 	void Reset();
 private:
 
+
+	void LDX_IMM();
+	void TXS_IMP();
+	void LDY_IMM();
+	void SEI_IMP();
+	void JSR_ABS();
+	void LDA_ABX();
+	void CMP_ABX();
+	void BNE_REL();
+	void CLD_IMP();
+	void RTS_IMP();
+	void STX_ABS();
+	void SEC_IMP();
+	void CLC_IMP();
+	void LDA_IMM();
+	void STA_ABX();
+	void DEX_IMP();
+	void STA_ZP();
+	void RLA_ABS();
+	void STA_ABS();
+	void LDA_ABS();
+	void BEQ_REL();
+	void JMP_ABS();
+	void AND_ABY();
+	void ORA_ABY();
+	void TAY_IMP();
+	void STA_ABY();
+	void INY_IMP();
+	void STX_ZP();
+	void STY_ZP();
+	void INC_ZP();
+	void LDA_IZY();
+	void TAX_IMM();
+	void EOR_ZPX();
+	void CMP_IZX();
+	void STA_IZY();
+	void CMP_IZY();
+	void ROL_IMM();
+	void TXA_IMM();
+	void TYA_IMM();
+	void LDY_ZP();
+	void STY_ABS();
+	void LDA_ABY();
+	void BCS_REL();
+	void DEY_IMM();
+	void BPL_REL();
+	void STY_ZPX();
+	void checkV(int val);
+	void ADC_IMM();
+	void BCC_REL();
+	void INX_REL();
+	void CPX_IMM();
+	void STA_ZPX();
+	void LDA_ZPX();
+	void CLI_IMP();
+	void ORA_ABS();
+	void LDA_ZP();
+	void LDX_ZP();
+	void LDY_ZPX();
+	void BMI_REL();
+	void AND_IMM();
+	void ORA_IMM();
+	void JMP_IND();
+	void LDX_ABS();
+	void LDY_ABS();
+	void CPY_ZP();
+	void CMP_ZP();
+	void ADC_ZP();
+	void SBC_IMM();
+	void CMP_IMM();
+	void PHP_IMP();
+
+	void PHA_IMP();
+
+	void PLA_IMP();
+
+	void PLP_IMP();
+
+	unsigned int totalOps;
 	void setupAddressMap()
 	{
 

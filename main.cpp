@@ -85,12 +85,19 @@ int main(int argc, char **argv)
 				break;
 			}	
 		}
+
+		unsigned char val = 0xe4 - 0xa4;
+
 		Uint8* keys;
 		keys = SDL_GetKeyState(NULL);
 		
 		if(keys[SDLK_F7] == 1)
 		{
 			platform.dumpRam();
+		}
+		if (keys[SDLK_SPACE] == 1)
+		{
+			platform.dumpVicRam();
 		}
 		platform.update(1);
 		

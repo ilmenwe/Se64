@@ -38,7 +38,7 @@ struct screenData
 
 struct Glyph
 {
-	char row[8];
+	unsigned char row[8];
 };
 
 void Init(Platform* platform);
