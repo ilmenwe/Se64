@@ -88,7 +88,7 @@ void log()
 	ss << std::endl;
 
 	std::string logstr = ss.str();
-	for (int i = 0; i < logstr.length(); i++)
+	for (unsigned int i = 0; i < logstr.length(); i++)
 	{
 		
 		logstr[i] = toupper(logstr[i]);
@@ -101,16 +101,15 @@ void log()
 
 void LogRam(unsigned char* ram)
 {
-	/*
+	
 	std::string out;
 	out.resize(1024 * 64);
 
 	memcpy((void*)out.c_str(), ram, 1024 * 64);
-	Log(out);
 	std::ofstream log("ramDump.txt", std::ios::app);
 	log << out << std::endl;
 	log.close();
-	*/
+	
 }
 
 void LogIO(std::string data)

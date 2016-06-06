@@ -120,13 +120,13 @@ unsigned char Platform::Read(unsigned short address)
 	else if (address >= 0xDC00 && address <= 0xDC0F)
 	{
 		//Log("NON IMPLEMTEND CIA 1 STUFF!!!!");
-		data = 0x00;
+		data = 0xFF;
 
 	}
 	else if (address >= 0xDD00 && address <= 0xDD0F)
 	{
 		//Log("NON IMPLEMTEND CIA 2 STUFF!!!!");
-		data = 0x00;
+		data = 0xFF;
 	}
 	else
 	{
@@ -139,7 +139,7 @@ unsigned char Platform::Read(unsigned short address)
 
 
 	LogIO("Read from address " + intToStr(address) + " got data: " + intToStr(data));
-	if (address == 0x0400)
+	if (address > 0x03ff && address < 0x0400 + (40 * 25))
 	{
 		bool breakhere = true;
 	}

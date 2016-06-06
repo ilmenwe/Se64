@@ -81,6 +81,7 @@ enum CPU_TASKS
 
 union _NVBDI_ZC_
 {
+	unsigned char byte;
 	struct {
 		unsigned C : 1;
 		unsigned Z : 1;
@@ -91,7 +92,6 @@ union _NVBDI_ZC_
 		unsigned V : 1;
 		unsigned N : 1;
 	};
-	unsigned char byte;
 };
 
 
@@ -101,8 +101,6 @@ public:
 	CPU(Platform* platform);
 
 	void Tick();
-	void ExecuteOp();
-	void EvaluateOpAddressMode();
 	void Reset();
 private:
 
@@ -489,57 +487,8 @@ private:
 	BitsAndByte X() { return X_; }
 	BitsAndByte Y() { return Y_; }
 
-	void IZX();
-	void ISC();
-	
+
 	void checkNZ(unsigned char data);
-
-	void SLO();
-
-	void ORA();
-	void AND();
-	void EOR();
-	void ADC();
-	void SBC();
-	void CMP();
-	
-	void CPX();
-	void CPY();
-	void DEC();
-	void DEX();
-	void DEY();
-	void INC();
-	void INX();
-	void INY();
-	void ASL();
-	void ROL();
-	void LSR();
-	void ROR();
-
-	void NOP();
-
-	void LDA();
-	void STA();
-
-	void CLC();
-	void SEC();
-	void CLD();
-	void SED();
-	void CLI();
-	void SEI();
-	void CLV();
-
-	void BPL();
-	void BMI();
-	void BVC();
-	void BVS();
-	void BCC();
-	void BCS();
-	void BNE();
-	void BEQ();
-	void BRK();
-	void RTI();
-	void TAY();
 
 	unsigned char pop()
 	{
@@ -555,102 +504,8 @@ private:
 		SP &= 0xff;
 	}
 
-
-
-	void LDY();
-	void LDX();
-
-	void JMP();
-
-	void BIT();
-	
-	void JSR();
-
-	void TXS();
-	void PLA();
-	void PHA();
-	void PLP();
-	void PHP();
-	void STX();
-	void STY();
-	void TAX();
-	void TXA();
-	void RTS();
-
 	
 
-	void N(bool val)
-	{
-		NVBDI_ZC_.N = val;
-	}
-	void V(bool val)
-	{
-		NVBDI_ZC_.V = val;
-
-	}
-	void B(bool val)
-	{
-		NVBDI_ZC_.B = val;
-
-	}
-	void D(bool val)
-	{
-		NVBDI_ZC_.D = val;
-	}
-	void _(bool val)
-	{
-		NVBDI_ZC_.D = val;
-	}
-	void I(bool val)
-	{
-		NVBDI_ZC_.I = val;
-
-	}
-	void Z(bool val)
-	{
-		NVBDI_ZC_.Z = val;
-
-	}
-	void C(bool val)
-	{
-		NVBDI_ZC_.C = val;
-	}
-
-
-
-
-	bool N()
-	{
-		return NVBDI_ZC_.N != 0;
-	}
-	bool V()
-	{
-		return NVBDI_ZC_.V != 0;
-
-	}
-	bool B()
-	{
-		return NVBDI_ZC_.B != 0;
-
-	}
-	bool D()
-	{
-		return NVBDI_ZC_.D != 0;
-	}
-	bool I()
-	{
-		return NVBDI_ZC_.I != 0;
-
-	}
-	bool Z()
-	{
-		return NVBDI_ZC_.Z != 0;
-
-	}
-	bool C()
-	{
-		return NVBDI_ZC_.C != 0;
-	}
 
 
 	unsigned char ADL_;
